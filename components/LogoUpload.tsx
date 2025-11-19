@@ -46,7 +46,18 @@ export function LogoUpload({ bucket = 'logos', onChange }: LogoUploadProps) {
 
         const publicUrl = supabase.storage.from(bucket).getPublicUrl(data.path).data.publicUrl;
         setPreviewUrl(publicUrl);
-        onChange?.(publicUrl);
+
+        const { data: signedData, error: signedError } = await supabase.storage
+          .from(bucket)
+          .createSignedUrl(data.path, 60 * 60 * 24 * 7);
+
+        if (signedError) {
+          throw signedError;
+        }
+
+        if (signedData?.signedUrl) {
+          onChange?.(signedData.signedUrl);
+        }
       } catch (err) {
         console.error(err);
         setError((err as Error).message);
