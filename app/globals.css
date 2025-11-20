@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  color-scheme: dark;
-}
-
 a {
   color: inherit;
+}
+
+body {
+  background: #ffffff;
 }

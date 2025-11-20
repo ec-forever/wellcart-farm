@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
+import { Inter } from 'next/font/google';
 import './globals.css';
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
   title: 'Wellcart Farm Portal',
@@ -13,10 +16,10 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="bg-slate-950 text-white antialiased">
-        <div className="min-h-screen bg-gradient-to-b from-slate-950 to-slate-900">
-          <div className="mx-auto max-w-5xl px-6 py-10">{children}</div>
+    <html lang="en" className={inter.variable}>
+      <body className={`${inter.className} bg-white text-[#0F3D1C] antialiased`}>
+        <div className="min-h-screen">
+          <div className="mx-auto max-w-6xl px-6 py-12 lg:px-10 lg:py-16">{children}</div>
         </div>
       </body>
     </html>
